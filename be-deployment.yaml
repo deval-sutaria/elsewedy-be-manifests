@@ -3,6 +3,10 @@ kind: Deployment
 metadata:
   name: nopcommerce-app
   namespace: elsewedy-app
+  annotations:
+    reloader.stakater.com/auto: "true"
+    reloader.stakater.com/configmap: "nop-web-config"
+    reloader.stakater.com/secret: "nopcommerce-secrets"
   labels:
     app: nopcommerce
 spec:
