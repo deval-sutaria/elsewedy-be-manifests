@@ -1,0 +1,56 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nop-web-config
+  namespace: elsewedy-app
+data:
+  ASPNETCORE_ENVIRONMENT: "Production"
+  ASPNETCORE_URLS: "http://+:80"
+  ASPNETCORE_FORWARDEDHEADERS_ENABLED: "true"
+  ASPNETCORE_HTTPLOGGING_ENABLED: "true"
+
+  ConnectionStrings__DataProvider: "sqlserver"
+  ConnectionStrings__SQLCommandTimeout: "30"
+
+  DOTNET_SYSTEM_GLOBALIZATION_INVARIANT: "false"
+  DOTNET_SYSTEM_GLOBALIZATION_PREDEFINED_CULTURES_ONLY: "false"
+  LC_ALL: "en_US.UTF-8"
+  LANG: "en_US.UTF-8"
+
+  CacheConfig__DefaultCacheTime: "66"
+  CacheConfig__ShortTermCacheTime: "0"
+  CacheConfig__BundledFilesCacheTime: "120"
+
+  CommonConfig__DisplayFullErrorStack: "false"
+  CommonConfig__UseSessionStateTempDataProvider: "false"
+  CommonConfig__MiniProfilerEnabled: "false"
+  CommonConfig__StaticFilesCacheControl: "public,max-age=31536000"
+  CommonConfig__ServeUnknownFileTypes: "false"
+  CommonConfig__UseAutofac: "true"
+
+  DistributedCacheConfig__DistributedCacheType: "redis"
+  DistributedCacheConfig__Enabled: "false"
+
+  HostingConfig__UseProxy: "false"
+
+  InstallationConfig__DisableSampleData: "false"
+  InstallationConfig__InstallRegionalResources: "true"
+
+  PluginConfig__UseUnsafeLoadAssembly: "true"
+
+  WebOptimizer__EnableJavaScriptBundling: "true"
+  WebOptimizer__EnableCssBundling: "true"
+  WebOptimizer__EnableMemoryCache: "true"
+  WebOptimizer__EnableDiskCache: "true"
+  WebOptimizer__HttpsCompression: "2"
+
+  AzureBlobConfig__ContainerName: ""
+  AzureBlobConfig__EndPoint: ""
+  AzureBlobConfig__AppendContainerName: "true"
+  AzureBlobConfig__StoreDataProtectionKeys: "false"
+
+  Logging__LogLevel__Default: "Information"
+  Logging__LogLevel__Microsoft: "Warning"
+  Logging__LogLevel__Microsoft.Hosting.Lifetime: "Information"
+
+  DataProtection__ApplicationDiscriminator: "NopWeb"

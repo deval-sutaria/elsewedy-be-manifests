@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nopcommerce-app
+  namespace: elsewedy-app
+  labels:
+    app: nopcommerce
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nopcommerce
+  template:
+    metadata:
+      labels:
+        app: nopcommerce
+    spec:
+      containers:
+        - name: nopcommerce
+          image: europe-west1-docker.pkg.dev/poc-elsewedy-0825/elsewedy-repo-elsewedy/backend:925ba64
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+            - containerPort: 443
+          env:
+            - name: DOTNET_SYSTEM_GLOBALIZATION_INVARIANT
+              value: "false"
+            - name: ConnectionStrings__DefaultConnection
+              valueFrom:
+                secretKeyRef:
+                  name: nopcommerce-secrets
+                  key: db-connection
+          envFrom:
+            - configMapRef:
+                name: nop-web-config
+                  #          readinessProbe:
+                  #            httpGet:
+                  #              path: /
+                  #              port: 80
+                  #                  #            initialDelaySeconds: 60
+                  #            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 60
+            periodSeconds: 20
+      securityContext:
+        runAsUser: 1001
+        runAsGroup: 1001
+        fsGroup: 1001
