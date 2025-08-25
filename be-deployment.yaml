@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: nopcommerce
-          image: europe-west1-docker.pkg.dev/poc-elsewedy-0825/elsewedy-repo-elsewedy/backend:bb427c1
+          image: europe-west1-docker.pkg.dev/poc-elsewedy-0825/elsewedy-repo-elsewedy/backend:8dba96d
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
