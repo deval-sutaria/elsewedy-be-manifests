@@ -19,6 +19,7 @@ spec:
       labels:
         app: nopcommerce
     spec:
+      serviceAccountName: api-ksa
       containers:
         - name: nopcommerce
           image: europe-west1-docker.pkg.dev/poc-elsewedy-0825/elsewedy-repo-elsewedy/backend:8dba96d
@@ -34,6 +35,13 @@ spec:
                 secretKeyRef:
                   name: nopcommerce-secrets
                   key: db-connection
+            - name: ConnectionString__ConnectionString
+              valueFrom:
+                secretKeyRef:
+                  name: nopcommerce-secrets
+                  key: ConnectionString
+
+            
           envFrom:
             - configMapRef:
                 name: nop-web-config
@@ -49,6 +57,14 @@ spec:
               port: 80
             initialDelaySeconds: 60
             periodSeconds: 20
+          volumeMounts:
+          - name: appsettings
+            mountPath: /app/App_Data/appsettings.json
+            subPath: appsettings.json
+      volumes:
+      - name: appsettings
+        configMap:
+          name: appsettings-file
       securityContext:
         runAsUser: 1001
         runAsGroup: 1001
