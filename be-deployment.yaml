@@ -50,12 +50,7 @@ spec:
                   #              port: 80
                   #                  #            initialDelaySeconds: 60
                   #            periodSeconds: 10
-          livenessProbe:
-            httpGet:
-              path: /
-              port: 80
-            initialDelaySeconds: 60
-            periodSeconds: 20
+        
           volumeMounts:
           - name: appsettings
             mountPath: /app/App_Data/appsettings.json
