@@ -22,7 +22,7 @@ spec:
       serviceAccountName: api-ksa
       containers:
         - name: nopcommerce
-          image: europe-west1-docker.pkg.dev/poc-elsewedy-0825/elsewedy-repo-elsewedy/backend:0051be3
+          image: europe-west1-docker.pkg.dev/poc-elsewedy-0825/elsewedy-repo-elsewedy/backend:f3fe722
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
